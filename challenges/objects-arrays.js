@@ -144,14 +144,11 @@ The resulting contact information strings should have a space between the first 
 "Josh josh@example.com"
 
 Log the result of your new array. */
-// function nameEmail() {
-//   const contactInfo = [];
-//   graduates.forEach(graduates => {
-//     const names = graduates.first_name + " " + graduates.email;
-//     contactInfo.push(names);
-//   });
-//   console.log(nameEmail());
-// }
+const contactInfo = [];
+graduates.forEach(function(names) {
+  contactInfo.push(names.first_name + " " + names.email);
+});
+console.log(contactInfo);
 
 // giving me back four empty boxes and a 0.
 
@@ -173,6 +170,14 @@ const unisWithUni = [];
 //     return unisWithUni.push(item);
 //   }
 // });
+
+graduates.filter(function(string) {
+  if (string === "Uni") {
+    unisWithUni.push(string.university);
+  }
+});
+
+console.log(unisWithUni);
 
 // console.log(howMany());
 
