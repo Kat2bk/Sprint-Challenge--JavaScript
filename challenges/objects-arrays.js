@@ -42,19 +42,19 @@ const dinosaurThree = {
 // Using your dinosaur objects, log answers to these questions:
 
 // How much did tyrannosaurus weigh?
-console.log(dinosaurOne.weight);
+// console.log(dinosaurOne.weight);
 
 // What was the diet of a velociraptor?
-console.log(dinosaurThree.diet);
+// console.log(dinosaurThree.diet);
 
 // How long was a stegosaurus?
-console.log(dinosaurTwo.length);
+// console.log(dinosaurTwo.length);
 
 // What time period did tyrannosaurus live in?
-console.log(dinosaurOne.period);
+// console.log(dinosaurOne.period);
 
 // Create a new roar method for the tyrannosaurus.  When called, return "RAWERSRARARWERSARARARRRR!" Log the result.
-console.log(dinosaurOne.roar());
+// console.log(dinosaurOne.roar());
 
 // ==== Arrays ====
 
@@ -132,7 +132,7 @@ graduates.forEach(function(item, index, array) {
   universities1.push(item.university);
 });
 universities1.sort();
-console.log("I am", universities1);
+// console.log("I am", universities1);
 
 // const universities = graduates.map(function(items) {
 //   return items.university.sort();
@@ -148,37 +148,20 @@ const contactInfo = [];
 graduates.forEach(function(names) {
   contactInfo.push(names.first_name + " " + names.email);
 });
-console.log(contactInfo);
+// console.log(contactInfo);
 
 // giving me back four empty boxes and a 0.
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called unisWithUni that contains them all. This will be an array of objects. Log the result. */
 
-// const howMany = graduates.filter(function(item) {
-//   if (item.university === "Uni") {
-//     return unisWithUni.push(item);
+// const unisWithUni = [];
+// graduates.forEach(function(item, index, array) {
+//   if (item.university.includes("Uni")) {
+//     unisWithUni.push(item.university);
 //   }
 // });
 
-const universities = graduates.filter(function(item, index, array) {
-  if (item.university.indexOf("Uni") !== -1) {
-    return true;
-  } else {
-    return false;
-  }
-});
-
-console.log(universities);
-
-// graduates.filter(function(string) {
-//   return string.university === "Uni";
-// })
-
-// graduates.filter(function(string) {
-//   if (string => string.length === "Uni") {
-//     unisWithUni.push(string.university);
-//   }
-// });
+// console.log("I am forEach", unisWithUni);
 
 // console.log(howMany());
 
@@ -254,9 +237,14 @@ const zooAnimals = [
 /* Request 1: .forEach()
 
 The zoos want to display both the scientific name and the animal name in front of the habitats. Populate the displayNames array with only the animal_name and scientific_name of each animal. displayNames will be an array of strings, and each string should follow this pattern: "Name: Jackal, asiatic, Scientific: Canis aureus."
-
 */
+
 const displayNames = [];
+zooAnimals.forEach(function(name, index, array) {
+  displayNames.push(
+    `Name: ${name.animal_name} Scientific: ${name.scientific_name}`
+  );
+});
 console.log(displayNames);
 
 /* Request 2: .map()
@@ -265,7 +253,9 @@ The zoos need a list of all their animal's names (animal_name only) converted to
 
 */
 
-const lowCaseAnimalNames = [];
+const lowCaseAnimalNames = zooAnimals.map(function(name, index, array) {
+  return name.animal_name.toLowerCase();
+});
 console.log(lowCaseAnimalNames);
 
 /* Request 3: .filter() 
@@ -273,16 +263,22 @@ console.log(lowCaseAnimalNames);
 The zoos are concerned about animals with a lower population count. Using filter, create a new array of objects called lowPopulationAnimals which contains only the animals with a population less than 5.
 
 */
-const lowPopulationAnimals = [];
-console.log(lowPopulationAnimals);
+const lowPopulationAnimals = zooAnimals.filter(function(obj, index, array) {
+  return obj.population < 5;
+});
+console.log("numbers", lowPopulationAnimals);
 
 /* Request 4: .reduce() 
 
 The zoos need to know their total animal population across the United States. Find the total population from all the zoos using the .reduce() method. Remember the reduce method takes two arguments: a callback (which itself takes two args), and an initial value for the count.
 
 */
-const populationTotal = 0;
-console.log(populationTotal);
+
+const sumArray = zooAnimals.reduce(function(total, currentValue) {
+  return total + currentValue.population;
+}, 0);
+
+console.log(sumArray);
 
 /*
 
